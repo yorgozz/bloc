@@ -19,7 +19,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         final properties = await propertyService.getAllAvailableProperties();
         emit(state.copyWith(
             properties: properties, selectedProperty: properties[0]));
-        // print('select property' + state.selectedProperty!.propertyName);
       } catch (e) {
         print('error getting proprties');
       }

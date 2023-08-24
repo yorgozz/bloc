@@ -1,10 +1,10 @@
 class UserModel {
-  String email;
-  String firstName;
-  String lastName;
-  String userId;
+  final String email;
+  final String firstName;
+  final String lastName;
+  final String userId;
 
-  UserModel({
+  const UserModel({
     required this.email,
     required this.firstName,
     required this.lastName,
@@ -27,5 +27,25 @@ class UserModel {
       lastName: json['lastName'],
       userId: json['userId'],
     );
+  }
+  // factory UserModel.emptyUser() {
+  //   return UserModel(
+  //     email: '',
+  //     firstName: '',
+  //     lastName: '',
+  //     userId: '',
+  //   );
+  // }
+
+  static const empty = UserModel(
+    email: '',
+    firstName: '',
+    lastName: '',
+    userId: '',
+  );
+
+  @override
+  String toString() {
+    return 'UserModel{email=$email, firstName=$firstName, lastName=$lastName, userId=$userId}';
   }
 }

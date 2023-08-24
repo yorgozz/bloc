@@ -1,6 +1,8 @@
-import 'package:display_name/blocs/homeBloc/home_bloc_bloc.dart';
-import 'package:display_name/blocs/signInBloc/sign_in_bloc_bloc.dart';
-import 'package:display_name/blocs/signUpBloc/sign_up_bloc_bloc.dart';
+import 'package:display_name/blocs/authenticationBloc/authentication_bloc.dart';
+import 'package:display_name/blocs/homeBloc/home_bloc.dart';
+import 'package:display_name/blocs/modalbloc/modal_bloc.dart';
+import 'package:display_name/blocs/signInBloc/sign_in_bloc.dart';
+import 'package:display_name/blocs/signUpBloc/sign_up_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<SignupBloc>(create: (context) => SignupBloc()),
         BlocProvider<SignInBloc>(create: (context) => SignInBloc()),
         BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
+        BlocProvider<AuthenticationBlocBloc>(
+            create: (context) => AuthenticationBlocBloc()),
+        BlocProvider<ModalBloc>(create: (context) => ModalBloc()),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,

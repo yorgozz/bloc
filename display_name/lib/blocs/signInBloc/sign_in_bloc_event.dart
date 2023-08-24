@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 abstract class SignInBlocEvent extends Equatable {}
 
@@ -22,12 +21,6 @@ class UpdatePasswordEvent extends SignInBlocEvent {
 }
 
 class SignInPressedEvent extends SignInBlocEvent {
-  final String email;
-  final String password;
-  final BuildContext context;
-
-  SignInPressedEvent(this.context, this.email, this.password);
-
   @override
-  List<Object?> get props => [email, password];
+  List<Object?> get props => [];
 }

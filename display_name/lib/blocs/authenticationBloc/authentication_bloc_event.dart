@@ -1,4 +1,4 @@
-part of 'authentication_bloc_bloc.dart';
+part of 'authentication_bloc.dart';
 
 @immutable
 abstract class AuthenticationBlocEvent extends Equatable {}

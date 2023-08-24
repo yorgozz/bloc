@@ -1,9 +1,7 @@
 import 'package:display_name/data/models/userModel.dart';
-import 'package:display_name/shared_widgets/GlobError.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 class AuthRepo {
   CollectionReference usersRef = FirebaseFirestore.instance.collection('users');
@@ -16,7 +14,7 @@ class AuthRepo {
     await Firebase.initializeApp();
   }
 
-  Future<User?> registerUser(
+  Future<String> registerUser(
       String email, String password, String firstName, String lastName) async {
     try {
       final UserCredential userCredential =
@@ -31,38 +29,34 @@ class AuthRepo {
         lastName: lastName.trim(),
         userId: userCredential.user!.uid,
       );
-
       await usersRef.doc(userModel.userId).set(userModel.toMap());
-
-      return userCredential.user;
+      return '';
     } catch (e) {
       if (e is FirebaseAuthException) {
-        //ErrorSnackbar.showError(context, 'An error occurred: ${e.message}');
+        return e.message.toString();
       }
+      return 'something went wrong';
     }
-    return null;
   }
 
-  Future<User?> loginUser(
-      BuildContext context, String email, String password) async {
+  Future<String> loginUser(String email, String password) async {
     try {
-      final UserCredential userCredential =
-          await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-
-      return userCredential.user;
+      return '';
     } catch (e) {
-      print('Error: ${e.toString()}');
       if (e is FirebaseAuthException) {
-        ErrorSnackbar.showError(context, 'An error occurred: ${e.message}');
+        print(e.message.toString());
+        return e.message.toString();
       }
+      return 'something went wromg';
     }
-    return null;
   }
 
-  void signout() {
-    FirebaseAuth.instance.signOut();
+  void signout() async {
+    print("signing out");
+    await _auth.signOut();
   }
 }

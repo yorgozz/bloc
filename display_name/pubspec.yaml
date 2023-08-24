@@ -78,6 +78,8 @@ flutter:
     - assets/Icon-16x-dropdown (1).svg
     - images/Group 10961.png
     - assets/Group 11801.svg
+    - assets/vuesax-outline-info-circle (1).svg
+    - assets/vuesax-outline-info-circle.svg 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

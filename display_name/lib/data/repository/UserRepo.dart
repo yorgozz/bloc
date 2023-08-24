@@ -8,7 +8,7 @@ class UserRepo {
       User? user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {
-        print('user diff than null');
+        print("here2");
         CollectionReference usersCollection =
             FirebaseFirestore.instance.collection('users');
 
@@ -18,15 +18,16 @@ class UserRepo {
         if (userSnapshot.exists) {
           UserModel userModel =
               UserModel.fromJson(userSnapshot.data() as Map<String, dynamic>);
-          print('raddet userModel');
+
+          print("here3 ${userModel.firstName}");
           return userModel;
         }
       }
-      print('raddet null');
-      return null;
+      print("here4");
+      return UserModel.empty;
     } catch (e) {
       print('Error checking user and retrieving data: $e');
-      return null;
+      return UserModel.empty;
     }
   }
 }
